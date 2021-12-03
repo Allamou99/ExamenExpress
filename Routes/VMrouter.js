@@ -25,5 +25,16 @@ vmsRouter.route('/')
     .catch((err)=>next(err)
     )
 })
+vmsRouter.route('/:vmId')
+.put((req,res,next)=>{
+    vms.findByIdAndUpdate(req.params.vmId,{
+        $set: req.body
+    }, {new:true})
+    .then(update=>{
+        res.statusCode = 200;
+        res.setHeader('Content-Type',"application/json");
+        res.json(update);
+    })
+})
 
 module.exports = vmsRouter
