@@ -16,11 +16,10 @@ connect.then((db)=>{
 
 app.use('/vms', vmsRouter);
 
-const port = 3000;
+const port = process.env.PORT;
 const hostname='0.0.0.0';
 var server = http.createServer(app)
 server.listen(port ,hostname,()=>{
     console.log('Server is running on port ' + port);
 })
-
 module.exports = app;
